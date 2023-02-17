@@ -5,16 +5,27 @@
 // Счётчики результирующего массива и подмассива, откуда был взят элемент, увеличиваются на один.
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Ex_01 {
     private static int[] result;
 
     public static void main(String[] args) {
-        int[] sortArr = {12, 6, 4, 1, 15, 4, 0, 9, 9, 10};
+        int[] sortArr = randArray(10, 10, 30);
         int[] result = mergeSort(sortArr);
-        System.out.println(Arrays.toString(sortArr));
-        System.out.println(Arrays.toString(result));
+        System.out.printf("Исходный массив: \n%s\n", Arrays.toString(sortArr));
+        System.out.printf("Отсортированный массив: \n%s\n", Arrays.toString(result));
     }
+
+    static int[] randArray(int size, int from, int to) {
+        Random rand = new Random();
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++){
+            array[i] = rand.nextInt(from) + rand.nextInt(to);
+        }
+        return array;
+    }
+
     // делим массив на две половины
     public static int[] mergeSort(int[] arr) {
         if (arr.length <= 1) return arr;
